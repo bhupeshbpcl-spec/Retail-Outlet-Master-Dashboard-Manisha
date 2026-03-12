@@ -3,183 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BPCL App</title>
+    <title>BPCL | RO Master Dashboard</title>
     
-    <link rel="apple-touch-icon" href="http://googleusercontent.com/image_collection/image_retrieval/8568565462602919547_0">
-    <link rel="icon" type="image/png" href="http://googleusercontent.com/image_collection/image_retrieval/8568565462602919547_0">
-
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="mobile-web-app-capable" content="yes">
-
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <style>
-        body { -webkit-tap-highlight-color: transparent; }
-        .active-tab { color: #0054a6; } /* BPCL Blue */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), 
+                        url('https://images.unsplash.com/photo-1490750967868-88aa34865946?auto=format&fit=crop&q=80&w=2070');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .serif-font { font-family: 'Playfair Display', serif; }
+        .bpcl-blue { color: #0054a6; }
+        .bpcl-bg-blue { background-color: #0054a6; }
+        .table-container { max-height: 450px; }
+        tr:hover { background-color: rgba(255, 255, 255, 0.9); }
+        * { -webkit-tap-highlight-color: transparent; }
     </style>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RO Location Dashboard</title>
-
-<style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin: 0;
-        padding: 20px;
-        background: #f4f7f6;
-        color: #333;
-    }
-    .container {
-        max-width: 1200px;
-        margin: auto;
-    }
-    h2 {
-        text-align: center;
-        color: #2c3e50;
-        margin-bottom: 20px;
-    }
-    .search-container {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    #searchBox {
-        width: 100%;
-        max-width: 500px;
-        padding: 12px 15px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        outline: none;
-    }
-    #searchBox:focus {
-        border-color: #007bff;
-    }
-    .table-container {
-        max-height: 400px; /* Makes the table scrollable */
-        overflow-y: auto;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        background: white;
-        margin-bottom: 30px;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th {
-        background: #2c3e50;
-        color: white;
-        padding: 12px 15px;
-        text-align: left;
-        position: sticky;
-        top: 0; /* Keeps header visible while scrolling */
-        z-index: 10;
-    }
-    td {
-        padding: 12px 15px;
-        border-bottom: 1px solid #eee;
-    }
-    tr:hover {
-        background: #eaf1f8;
-        cursor: pointer;
-    }
-    .status-active { color: #27ae60; font-weight: bold; }
-    .status-suspended { color: #e74c3c; font-weight: bold; }
-    .status-initial { color: #f39c12; font-weight: bold; }
-
-    #details {
-        padding: 25px;
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    .detail-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 15px;
-    }
-    .detail-item {
-        background: #f8f9fa;
-        padding: 10px;
-        border-radius: 5px;
-        border-left: 4px solid #007bff;
-    }
-    .detail-item span {
-        display: block;
-        font-size: 0.85em;
-        color: #777;
-        margin-bottom: 3px;
-    }
-    .mapBtn {
-        display: inline-block;
-        margin-top: 15px;
-        padding: 12px 20px;
-        background: #007bff;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-        font-weight: bold;
-        text-align: center;
-        transition: 0.3s;
-    }
-    .mapBtn:hover {
-        background: #0056b3;
-    }
-</style>
 </head>
-<body>
+<body class="pb-12 text-slate-800">
 
-<div class="container">
-    <h2>Retail Outlet Master Dashboard</h2>
+    <header class="sticky top-0 z-50 glass-panel border-b border-white/20 px-6 py-5 shadow-sm">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <img src="https://www.bharatpetroleum.in/images/logo.png" class="h-9" alt="BPCL">
+                <h1 class="text-xl font-bold tracking-tight bpcl-blue">Retail Master</h1>
+            </div>
+            <div id="quickStats" class="flex space-x-4 text-[10px] font-bold uppercase tracking-widest text-slate-500"></div>
+        </div>
+    </header>
 
-    <div class="search-container">
-        <input type="text" id="searchBox" placeholder="Search by Cust Code, Cust Name, or Bus Loc...">
+    <div class="max-w-6xl mx-auto px-4 mt-12">
+        <div class="text-center mb-10">
+            <h2 class="serif-font text-4xl mb-2 italic text-slate-900">Site Location Intelligence</h2>
+            <div class="h-1 w-20 bg-yellow-400 mx-auto rounded-full"></div>
+        </div>
+
+        <div class="relative mb-8 max-w-2xl mx-auto">
+            <i class="fa-solid fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-slate-300"></i>
+            <input type="text" id="searchBox" placeholder="Search code, name, or city..." 
+                class="w-full pl-14 pr-6 py-5 bg-white border border-slate-100 shadow-2xl rounded-full outline-none focus:ring-2 focus:ring-yellow-400 transition-all text-lg">
+        </div>
+
+        <div class="bg-white/40 glass-panel rounded-3xl shadow-xl overflow-hidden mb-10 border border-white">
+            <div class="overflow-y-auto table-container">
+                <table id="roTable" class="w-full text-left border-collapse">
+                    <thead class="sticky top-0 bg-white/95 z-10 border-b border-slate-50">
+                        <tr>
+                            <th class="px-6 py-4 font-bold text-slate-400 text-[10px] uppercase tracking-[0.2em]">Bus Loc</th>
+                            <th class="px-6 py-4 font-bold text-slate-400 text-[10px] uppercase tracking-[0.2em]">Customer Name</th>
+                            <th class="px-6 py-4 font-bold text-slate-400 text-[10px] uppercase tracking-[0.2em]">City</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-50"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="details">
+            <div class="bg-white/20 border-2 border-dashed border-white/60 rounded-3xl p-12 text-center text-slate-400">
+                <p class="text-lg font-light italic">Select an outlet to explore status and navigation</p>
+            </div>
+        </div>
     </div>
-
-    <div class="table-container">
-        <table id="roTable">
-            <thead>
-                <tr>
-                    <th>Bus Loc</th>
-                    <th>Status</th>
-                    <th>Customer Code</th>
-                    <th>Customer Name</th>
-                    <th>City</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    </div>
-
-    <div id="details">
-        <h3 style="margin:0; color:#555; text-align:center;">Select an RO from the table above to view full details and navigate.</h3>
-    </div>
-</div>
 
 <script>
-// Full database mapped directly from your provided records
 const data = [
     { busloc:"2007254", status:"Suspended", descr:"RO AT KASHIPUR,RUDRAPUR RD,US NAGAR", cust:"116473", name:"NEW GENERAL SUPPLY AGENCY", area:"KASHIPUR TOWN- NH-74", cat:"DO", street:"MOHALLA GANJ", city:"KASHIPUR", date:"01-11-2001", lon:"78.882694", lat:"29.194654", village:"KASHIPUR", market:"D1" },
     { busloc:"2007258", status:"Suspended", descr:"RO AT BAZPUR,NAINITAL RD,US NAGAR", cust:"116478", name:"HARBANS MOTOR WORKS", area:"BAZPUR", cat:"CC", street:"BAZPUR NAINITAL ROAD", city:"BAZPUR", date:"01-11-2001", lon:"79.15006231", lat:"29.15829168", village:"BAZPUR", market:"D2" },
-    { busloc:"2014726", status:"Initial", descr:"RO AT VILLAGE LOKA & DEHRA", cust:"", name:"", area:"KICHHA SITARGANJ ROAD", cat:"CC", street:"KHASRA NO. 89 KH & 62/1 VILLAGE LOKA & DEHRA", city:"SITARGANJ", date:"", lon:"0", lat:"0", village:"VILLAGE- LOKA & DEHRA", market:"D1" },
-    { busloc:"2016355", status:"Initial", descr:"RO AT KHALIMAHUWAT", cust:"", name:"", area:"KHATIMA", cat:"DC", street:"MELAGHAT ROAD", city:"KHATIMA", date:"", lon:"28.8755567", lat:"80.0237254", village:"KHALIMAHUWAT", market:"E" },
-    { busloc:"2016421", status:"Initial", descr:"RO AT UNCHA GAON", cust:"", name:"", area:"RENTA", cat:"DC", street:"BANNAKHERA ROAD", city:"BAZPUR", date:"", lon:"79.094268", lat:"29.190702", village:"UNCHA GAON", market:"E" },
-    { busloc:"2016424", status:"Initial", descr:"RO AT KASHIPUR WML", cust:"", name:"", area:"KASHIPUR TOWN- NH-74", cat:"DC", street:"CHANDPUR-KASHIPUR ROAD", city:"KASHIPUR", date:"", lon:"78.958781", lat:"29.202107", village:"MAHESHPURA", market:"C" },
-    { busloc:"2019820", status:"Initial", descr:"RO AT VILLAGE MUNDIA ANI", cust:"", name:"", area:"DORAHA-GADARPUR ROAD", cat:"DC", street:"NH 74", city:"BAZPUR", date:"", lon:"79.1469673", lat:"29.1251812", village:"MUNDIA ANI", market:"D1" },
-    { busloc:"2019832", status:"Initial", descr:"RO AT VILLAGE MALPURI", cust:"", name:"", area:"SITARGANJ-PILIBHIT ROAD", cat:"DC", street:"ON NH 74 ( SITARGANJ PILIBHIT ROAD", city:"SITARGANJ", date:"", lon:"79.7030767", lat:"28.8883695", village:"MALPURI", market:"D1" },
-    { busloc:"2020251", status:"Initial", descr:"RO AT GANGOLIHAT BERINAG ROAD", cust:"", name:"", area:"PITHORAGARH", cat:"CC", street:"GANGOLIHAT BERINAG ROAD", city:"PITHORAGARH", date:"", lon:"80.04858", lat:"29.75127", village:"BANA", market:"D1" },
-    { busloc:"2020253", status:"Initial", descr:"RO AT JASPUR WML", cust:"", name:"", area:"JASPUR", cat:"CC", street:"JASPUR THAKURDWARA", city:"JASPUR", date:"", lon:"78.816097", lat:"29.275873", village:"JASPUR PATTI", market:"C" },
-    { busloc:"2025070", status:"Initial", descr:"RO AT VILLAGE MUNDIYA KALAN", cust:"", name:"", area:"BAZPUR", cat:"DC", street:"VILLAGE MUNDIYA KALAN", city:"MUNDIYA KALAN", date:"", lon:"79.129728", lat:"29.154228", village:"MUNDIYA KALAN", market:"E" },
-    { busloc:"2028995", status:"Initial", descr:"RO AT AMORI ON NH 09", cust:"", name:"", area:"TANAKPUR- CHAMPAWAT", cat:"DC", street:"VILLAGE AMORI TEHSIL CHAMPAWAT", city:"AMORI", date:"", lon:"80.049", lat:"29.219", village:"DAULA", market:"D1" },
-    { busloc:"2029044", status:"Initial", descr:"RO AT RUDRAPUR WML, NOT ON SH OR NH", cust:"", name:"", area:"RUDRAPUR CITY", cat:"DC", street:"VILLAGE FULSUNGI TEHSIL RUDRAPUR", city:"RUDRAPUR", date:"", lon:"79.431583", lat:"28.974611", village:"FULSUNGI", market:"C" },
-    { busloc:"2029183", status:"Initial", descr:"RO AT NH 125( NEW NH -09)", cust:"", name:"", area:"KHATIMA-PILIBHIT  ROAD", cat:"DC", street:"VILLAGE PACHPEDA TEHSIL NANAKMATTA", city:"SITARGANJ", date:"", lon:"79.79005", lat:"28.93958", village:"PACHPEDA", market:"D1" },
-    { busloc:"2029226", status:"Initial", descr:"RO AT VILLAGE BARA", cust:"", name:"", area:"PULBHATTA", cat:"DC", street:"VILLAGE BARA ,TEHSIL -KICHA ,UDHAM SINGH NAGAR", city:"VILLAGE BARA", date:"", lon:"79.596713", lat:"28.870522", village:"BARA", market:"D1" },
-    { busloc:"2029301", status:"Initial", descr:"RO AT KANALICHINNA (NH 09)", cust:"", name:"", area:"PITHORAGARH CITY", cat:"DC", street:"VILLAGE SIROLI", city:"KANALICHINNA", date:"", lon:"80.270639", lat:"29.675083", village:"SIROLI", market:"D1" },
+    { busloc:"2014726", status:"Initial", descr:"RO AT VILLAGE LOKA & DEHRA", cust:"", name:"---", area:"KICHHA SITARGANJ ROAD", cat:"CC", street:"KHASRA NO. 89 KH & 62/1 VILLAGE LOKA & DEHRA", city:"SITARGANJ", date:"", lon:"0", lat:"0", village:"VILLAGE- LOKA & DEHRA", market:"D1" },
+    { busloc:"2016355", status:"Initial", descr:"RO AT KHALIMAHUWAT", cust:"", name:"---", area:"KHATIMA", cat:"DC", street:"MELAGHAT ROAD", city:"KHATIMA", date:"", lon:"80.0237254", lat:"28.8755567", village:"KHALIMAHUWAT", market:"E" },
+    { busloc:"2016421", status:"Initial", descr:"RO AT UNCHA GAON", cust:"", name:"---", area:"RENTA", cat:"DC", street:"BANNAKHERA ROAD", city:"BAZPUR", date:"", lon:"79.094268", lat:"29.190702", village:"UNCHA GAON", market:"E" },
+    { busloc:"2016424", status:"Initial", descr:"RO AT KASHIPUR WML", cust:"", name:"---", area:"KASHIPUR TOWN- NH-74", cat:"DC", street:"CHANDPUR-KASHIPUR ROAD", city:"KASHIPUR", date:"", lon:"78.958781", lat:"29.202107", village:"MAHESHPURA", market:"C" },
+    { busloc:"2019820", status:"Initial", descr:"RO AT VILLAGE MUNDIA ANI", cust:"", name:"---", area:"DORAHA-GADARPUR ROAD", cat:"DC", street:"NH 74", city:"BAZPUR", date:"", lon:"79.1469673", lat:"29.1251812", village:"MUNDIA ANI", market:"D1" },
+    { busloc:"2019832", status:"Initial", descr:"RO AT VILLAGE MALPURI", cust:"", name:"---", area:"SITARGANJ-PILIBHIT ROAD", cat:"DC", street:"ON NH 74 ( SITARGANJ PILIBHIT ROAD", city:"SITARGANJ", date:"", lon:"79.7030767", lat:"28.8883695", village:"MALPURI", market:"D1" },
+    { busloc:"2020251", status:"Initial", descr:"RO AT GANGOLIHAT BERINAG ROAD", cust:"", name:"---", area:"PITHORAGARH", cat:"CC", street:"GANGOLIHAT BERINAG ROAD", city:"PITHORAGARH", date:"", lon:"80.04858", lat:"29.75127", village:"BANA", market:"D1" },
+    { busloc:"2020253", status:"Initial", descr:"RO AT JASPUR WML", cust:"", name:"---", area:"JASPUR", cat:"CC", street:"JASPUR THAKURDWARA", city:"JASPUR", date:"", lon:"78.816097", lat:"29.275873", village:"JASPUR PATTI", market:"C" },
+    { busloc:"2025070", status:"Initial", descr:"RO AT VILLAGE MUNDIYA KALAN", cust:"", name:"---", area:"BAZPUR", cat:"DC", street:"VILLAGE MUNDIYA KALAN", city:"MUNDIYA KALAN", date:"", lon:"79.129728", lat:"29.154228", village:"MUNDIYA KALAN", market:"E" },
+    { busloc:"2028995", status:"Initial", descr:"RO AT AMORI ON NH 09", cust:"", name:"---", area:"TANAKPUR- CHAMPAWAT", cat:"DC", street:"VILLAGE AMORI TEHSIL CHAMPAWAT", city:"AMORI", date:"", lon:"80.049", lat:"29.219", village:"DAULA", market:"D1" },
+    { busloc:"2029044", status:"Initial", descr:"RO AT RUDRAPUR WML, NOT ON SH OR NH", cust:"", name:"---", area:"RUDRAPUR CITY", cat:"DC", street:"VILLAGE FULSUNGI TEHSIL RUDRAPUR", city:"RUDRAPUR", date:"", lon:"79.431583", lat:"28.974611", village:"FULSUNGI", market:"C" },
+    { busloc:"2029183", status:"Initial", descr:"RO AT NH 125( NEW NH -09)", cust:"", name:"---", area:"KHATIMA-PILIBHIT ROAD", cat:"DC", street:"VILLAGE PACHPEDA TEHSIL NANAKMATTA", city:"SITARGANJ", date:"", lon:"79.79005", lat:"28.93958", village:"PACHPEDA", market:"D1" },
+    { busloc:"2029226", status:"Initial", descr:"RO AT VILLAGE BARA", cust:"", name:"---", area:"PULBHATTA", cat:"DC", street:"VILLAGE BARA ,TEHSIL -KICHA ,UDHAM SINGH NAGAR", city:"VILLAGE BARA", date:"", lon:"79.596713", lat:"28.870522", village:"BARA", market:"D1" },
+    { busloc:"2029301", status:"Initial", descr:"RO AT KANALICHINNA (NH 09)", cust:"", name:"---", area:"PITHORAGARH CITY", cat:"DC", street:"VILLAGE SIROLI", city:"KANALICHINNA", date:"", lon:"80.270639", lat:"29.675083", village:"SIROLI", market:"D1" },
     { busloc:"2007252", status:"Active", descr:"RO AT KASHIPUR,RAMNAGAR RD,US NAGAR", cust:"116471", name:"BHIKUMAL PYRELAL", area:"KASHIPUR TOWN- NH-74", cat:"CC", street:"MORADABAD - RAMNAGAR ROAD KASHIPUR", city:"KASHIPUR", date:"02-11-2001", lon:"78.96148519", lat:"29.20994501", village:"MORADABAD-KASHIPUR ROAD", market:"D1" },
     { busloc:"2007253", status:"Active", descr:"RO AT KASHIPUR , MORADABAD RD, US N", cust:"116472", name:"KAPOOR TRANSPORT CO.", area:"KASHIPUR TOWN- NH-74", cat:"CC", street:"KASHIPUR", city:"KASHIPUR", date:"01-11-2001", lon:"78.95600419", lat:"29.20488959", village:"KASHIPUR", market:"D1" },
     { busloc:"2007255", status:"Active", descr:"RO AT JASPUR,HARIDWAR ROAD,US NAGAR", cust:"116474", name:"CHANDERSEN RAMYASHPAL", area:"JASPUR", cat:"DC", street:"JASPUR", city:"JASPUR", date:"01-11-2001", lon:"78.83635534", lat:"29.27528237", village:"JASPUR", market:"D1" },
@@ -188,7 +105,7 @@ const data = [
     { busloc:"2007303", status:"Active", descr:"RO AT KUMOD,PITHORAGARH", cust:"124293", name:"HARBANS MOTOR WORKS A/C PITHORAGARH", area:"PITHORAGARH CITY", cat:"CC", street:"NEAR TAXI STAND, PITHORAGARH CITY PITHORAGARH", city:"PITHORAGARH", date:"01-11-2001", lon:"80.21296", lat:"29.582325", village:"KUMOD", market:"D1" },
     { busloc:"2007304", status:"Active", descr:"RO AT TANAKPUR CHORAHA,CHAMPAWAT", cust:"124294", name:"HARBANS MOTOR WORKS A/C. TANAKPUR", area:"TANAKPUR- CHAMPAWAT", cat:"CC", street:"CEMENT ROAD, TANAKPUR PITHORAGARH TANAKPUR ROAD", city:"TANAKPUR", date:"05-11-2001", lon:"80.1072608", lat:"29.07678403", village:"TANAKPUR", market:"D1" },
     { busloc:"2007305", status:"Active", descr:"RO AT GADARPUR,KASHIPUR RD,US NAGAR", cust:"124295", name:"HAZARILAL & COMPANY", area:"GADARPUR", cat:"DC", street:"KASHIPUR ROAD, GADARPUR", city:"GADARPUR", date:"01-11-2001", lon:"79.24793921", lat:"29.0420732", village:"GADARPUR", market:"D1" },
-    { busloc:"2007318", status:"Active", descr:"RO AT KICHHA,BAREILLY RD,US NAGAR", cust:"124310", name:"KICHHA FUEL OIL DISTRIBUTERS. (RESI", area:"PULBHATTA", cat:"DC", street:"KICHHA", city:"KICCHA", date:"09-09-1999", lon:"79.51126151", lat:"28.88811351", village:"KICHHA", market:"D1" },
+    { busloc:"2007318", status:"Active", descr:"RO AT KICHHA,BAREILLY RD,US NAGAR", cust:"124310", name:"KICHHA FUEL OIL DISTRIBUTERS.", area:"PULBHATTA", cat:"DC", street:"KICHHA", city:"KICCHA", date:"09-09-1999", lon:"79.51126151", lat:"28.88811351", village:"KICHHA", market:"D1" },
     { busloc:"2007323", status:"Active", descr:"RO AT RUDRAPUR,NAINITAL ROAD,US NAG", cust:"124315", name:"PREM SINGH & SONS.", area:"RUDRAPUR CITY", cat:"CC", street:"RUDRAPUR NAINITAL ROAD", city:"RUDRAPUR", date:"02-11-2001", lon:"79.400359", lat:"28.978554", village:"RUDRAPUR", market:"D1" },
     { busloc:"2007335", status:"Active", descr:"RO AT KASHIPUR,JASPUR RD,US NAGAR", cust:"124739", name:"UTTARANCHAL FILLING STATION", area:"KASHIPUR TOWN- NH-74", cat:"CC", street:"JASPUR ROAD NH74, OPPOSITE MANDI SAMITI", city:"KASHIPUR", date:"04-12-2001", lon:"78.9390079", lat:"29.21223992", village:"KASHIPUR", market:"D1" },
     { busloc:"2007339", status:"Active", descr:"RO AT GOTHA,KICHHA RD,SITARGANJ,US", cust:"134750", name:"SAI SERVICE STATION", area:"SITARGANJ", cat:"CC", street:"VILLAGE GOTHA KICHHA ROAD", city:"SITARGANJ", date:"30-04-2003", lon:"79.696554", lat:"28.914271", village:"SITARGANJ", market:"D1" },
@@ -203,22 +120,22 @@ const data = [
     { busloc:"2007378", status:"Active", descr:"RO AT FASIAPURA,KASHIPUR,US NAGAR", cust:"148544", name:"M/S BALI PETROLEUM", area:"MAHUWAKHEDA GANJ", cat:"DC", street:"VILLAGE FASIAPURA ALIGANJ ROAD", city:"KASHIPUR", date:"25-03-2006", lon:"78.95338972", lat:"29.19009857", village:"FASIAPURA", market:"E" },
     { busloc:"2007381", status:"Active", descr:"RO AT NARKA TOPA,BAZPUR , US NAGAR", cust:"149543", name:"INDER FILLING STATION", area:"BAZPUR", cat:"DC", street:"NARKA TOPA RAMNAGAR ROAD", city:"BAZPUR", date:"11-08-2006", lon:"79.14162425", lat:"29.17196746", village:"BAZPUR", market:"E" },
     { busloc:"2007393", status:"Active", descr:"RO AT GARHI NEGI,NAWALPUR,US NAGAR", cust:"157076", name:"CHANDRA FILLING STATION", area:"NADEHI", cat:"CC", street:"HEMPUR DEPOT ROAD", city:"GARHI NEGI", date:"10-07-2007", lon:"78.954835", lat:"29.292262", village:"GARHI NEGI", market:"E" },
-    { busloc:"2007396", status:"Active", descr:"RO AT SATUIA,UP BORDER, KICCHA,US N", cust:"158291", name:"YASH FILLING STATION", area:"PULBHATTA", cat:"MC", street:"VILLAGE-SATUIA, UTTRAKHAND-U.P BORDER", city:"KICCHA", date:"29-10-2010", lon:"79.516383", lat:"28.870009", village:"SATUIA", market:"D2" },
+    { busloc:"2007396", status:"Active", descr:"RO AT SATUIA,UP BORDER, KICCHA,US N", cust:"158291", name:"YASH FILLING STATION", area:"PULBHATTA", cat:"MC", street:"VILLAGE-SATUIA, UTTRAKHAND-U.P BORDER,", city:"KICCHA", date:"29-10-2010", lon:"79.516383", lat:"28.870009", village:"SATUIA", market:"D2" },
     { busloc:"2007403", status:"Active", descr:"RO AT SIDCUL, SITARGANJ , US NAGAR", cust:"170865", name:"AMBA FILLING STATION", area:"CHORGALIYA", cat:"CC", street:"U17 ELDECO SIDCUL INDUSTL PARK, U.S.NAGAR", city:"SITARGANJ", date:"28-01-2011", lon:"79.690458", lat:"29.021027", village:"SITARGANJ", market:"D2" },
-    { busloc:"2007406", status:"Active", descr:"RO AT RENTA,BAZPUR,US NAGAR", cust:"172259", name:"MATA SAHIB KAUR FILLING STATION", area:"RENTA", cat:"DC", street:"VILLAGE RENTA TEHSIL BAZPUR", city:"RENTA", date:"27-07-2011", lon:"79.15752363", lat:"29.22060068", village:"RENTA", market:"E" },
+    { busloc:"2007406", status:"Active", descr:"RO AT RENTA,BAZPUR,US NAGAR", cust:"172259", name:"MATA SAHIB KAUR FILLING STATION", area:"RENTA", cat:"DC", street:"VILLAGE RENTA TEHSIL BAZPUR,", city:"RENTA", date:"27-07-2011", lon:"79.15752363", lat:"29.22060068", village:"RENTA", market:"E" },
     { busloc:"2010399", status:"Active", descr:"RO AT NAMOONA", cust:"176777", name:"DOBAL FILLING STATION", area:"NAMUNA", cat:"CC", street:"SH 13,BAZPUR HALDWANI ROAD", city:"BAZPUR", date:"31-03-2012", lon:"79.201972", lat:"29.199817", village:"NAMUNA", market:"D2" },
     { busloc:"2011408", status:"Active", descr:"RO AT UTTAM NAGAR,DIST UDHAM SINGH", cust:"179041", name:"GURUNANAK HIGHWAY FUELS", area:"PULBHATTA", cat:"CC", street:"NH-74,SITARGANJ-KICHHA ROAD", city:"PIPLIYA", date:"31-10-2012", lon:"79.54737", lat:"28.895218", village:"PIPLIYA", market:"D1" },
     { busloc:"2011498", status:"Active", descr:"RO AT JAGATPUR PATTI", cust:"179255", name:"JAMBHO JI HIGHWAY FUEL STATION", area:"JASPUR", cat:"CC", street:"NH-74 ( New NH-734), KM-96", city:"Jagatpur Patti", date:"30-11-2012", lon:"78.883983", lat:"29.244559", village:"JAGATPUR PATTI", market:"D1" },
     { busloc:"2011499", status:"Active", descr:"RO AT RAMPURA , KASHIPUR", cust:"179319", name:"SHREE BANKEY BIHARI FUELS", area:"KASHIPUR TOWN- NH-74", cat:"CC", street:"KM-3 NH-121 ( New NH-309)", city:"Kashipur", date:"30-11-2012", lon:"78.977738", lat:"29.234445", village:"RAMPURA", market:"D1" },
-    { busloc:"2010453", status:"Active", descr:"RO AT MAHUAKHERA GANJ,US NAGAR", cust:"176116", name:"RAZA FILLING STATION", area:"MAHUWAKHEDA GANJ", cat:"DC", street:"ODR,KM STONE12,PERMANANDPUR", city:"MAHUAKHERA GANJ", date:"29-03-2012", lon:"78.949334", lat:"29.130193", village:"MAHUWAKHEDA GANJ", market:"E" },
-    { busloc:"2010454", status:"Active", descr:"RO AT KUNDESHWARI,US NAGAR", cust:"176174", name:"SHREE SAI FILLING STATION", area:"KUNDESHWARI", cat:"DC", street:"ODR,KM STONE3,JAYATPUR 3KM", city:"KUNDESHWARI", date:"29-03-2012", lon:"79.0197", lat:"29.204186", village:"KUNDESHWARI", market:"E" },
+    { busloc:"2010453", status:"Active", descr:"RO AT MAHUAKHERA GANJ,US NAGAR, U.K", cust:"176116", name:"RAZA FILLING STATION", area:"MAHUWAKHEDA GANJ", cat:"DC", street:"ODR,KM STONE12,PERMANANDPUR 13KM,MAHUAKHERAGANJ 0KM", city:"MAHUAKHERA GANJ", date:"29-03-2012", lon:"78.949334", lat:"29.130193", village:"MAHUWAKHEDA GANJ", market:"E" },
+    { busloc:"2010454", status:"Active", descr:"RO AT KUNDESHWARI,US NAGAR, U.K.", cust:"176174", name:"SHREE SAI FILLING STATION", area:"KUNDESHWARI", cat:"DC", street:"ODR,KM STONE3,JAYATPUR 3KM,KUNDESHWARI 1KM", city:"KUNDESHWARI", date:"29-03-2012", lon:"79.0197", lat:"29.204186", village:"KUNDESHWARI", market:"E" },
     { busloc:"2012841", status:"Active", descr:"RO AT KUSHMOT", cust:"183453", name:"SHAKTI SERVICE STATION", area:"SHAKTI FARM", cat:"DC", street:"STAKTIFARM VAMANPURI ROAD", city:"SHAKTIFARM", date:"31-01-2014", lon:"79.660069", lat:"28.996997", village:"KUSHMOT", market:"E" },
     { busloc:"2011958", status:"Active", descr:"RO AT MAHELIYA,KHATIMA", cust:"180242", name:"GANGA FILLING STATION", area:"KHATIMA", cat:"CC", street:"SITARGANJ KHATIMA ROAD ,NH 125", city:"KHATIMA", date:"28-02-2013", lon:"79.957321", lat:"28.924829", village:"MAHELIYA", market:"D1" },
     { busloc:"2013157", status:"Active", descr:"RO AT BARAKHERA ON SH-05", cust:"185142", name:"SHREE RAMJI & SONS", area:"DINESHPUR ROAD", cat:"CC", street:"KHASRA NO. 750 KA & 750 KHA, VILLAGE- BARAKHERA", city:"GADARPUR", date:"31-05-2014", lon:"79.260055", lat:"29.043328", village:"BARAKHERA", market:"D2" },
     { busloc:"2012531", status:"Active", descr:"RO AT KICHHA", cust:"181226", name:"PRAKASH PETROLEUM", area:"PULBHATTA", cat:"CC", street:"NH-74 KICHHA - SITARGANJ ROAD", city:"KICHHA", date:"31-08-2013", lon:"79.50968", lat:"28.892435", village:"SIROLI KALAN", market:"D1" },
     { busloc:"2015223", status:"Active", descr:"RO AT BAWANPURI", cust:"202105", name:"MAA SHARADA SERVICE STATION", area:"CHORGALIYA", cat:"CC", street:"SH-41", city:"SITARGANJ", date:"31-01-2018", lon:"79.69705456", lat:"28.96465694", village:"BAWANPURI", market:"D2" },
     { busloc:"2014396", status:"Active", descr:"RO AT MUNDIYA ANI", cust:"192762", name:"INDER HIGHWAY FUELS", area:"DORAHA-GADARPUR ROAD", cat:"CC", street:"KHASRA NO. 47/1/2 (OLD), 47/25 (NEW)", city:"BAZPUR", date:"30-04-2016", lon:"79.14634544", lat:"29.12637252", village:"MUDIA ANI", market:"D1" },
-    { busloc:"2014397", status:"Active", descr:"RO AT JAFFARPUR", cust:"191336", name:"RIDDHI SIDDHI FILLING STATION", area:"GADARPUR-RUDRAPUR ROAD", cat:"CC", street:"KH. NO. 218, VILL- JAFFARPUR", city:"JAFFARPUR", date:"31-12-2015", lon:"79.32328412", lat:"28.99566704", village:"VILLAGE- JAFFARPUR", market:"D1" },
+    { busloc:"2014397", status:"Active", descr:"RO AT JAFFARPUR", cust:"191336", name:"RIDDHI SIDDHI FILLING STATION", area:"GADARPUR-RUDRAPUR ROAD", cat:"CC", street:"KH. NO. 218, VILL- JAFFARPUR, TEHSIL- RUDRAPUR", city:"JAFFARPUR", date:"31-12-2015", lon:"79.32328412", lat:"28.99566704", village:"VILLAGE- JAFFARPUR", market:"D1" },
     { busloc:"2014650", status:"Active", descr:"RO AT RAMPURA KAZI", cust:"192599", name:"SHRI GURUNANAKDEVJI FILLING STATION", area:"RAMPURA KAZI", cat:"DC", street:"KH NO. 113 MIN AND 114 MIN", city:"KELA KHERA", date:"31-03-2016", lon:"79.16303751", lat:"29.05674898", village:"RAMPURA KAZI", market:"E" },
     { busloc:"2016356", status:"Active", descr:"RO AT KHATIMA PILIBHIT", cust:"210973", name:"SHRI UDAYDEV FILLING STATION", area:"KHATIMA-PILIBHIT ROAD", cat:"DC", street:"KHATIMA PILIBHIT ROAD", city:"KHATIMA", date:"31-07-2019", lon:"79.92697098", lat:"28.87740546", village:"BARI ANJANIYA", market:"D2" },
     { busloc:"2016357", status:"Active", descr:"RO AT BAZPUR HALDWANI", cust:"251704", name:"YADAV FILLING STATION", area:"BAZPUR", cat:"DC", street:"BAZPUR HALDWANI ROAD", city:"BAZPUR", date:"09-12-2024", lon:"79.1588287", lat:"29.165419", village:"BAZPUR", market:"D2" },
@@ -242,88 +159,85 @@ const data = [
     { busloc:"2024154", status:"Active", descr:"RO AT VILLAGE KAMLEKH", cust:"245830", name:"S.C. JOSHI & SONS FILLING STATION", area:"LOHAGHAT", cat:"DC", street:"VILLAGE KAMLEKH,PATI DHUNAGHAT LOHAGHAT ROAD", city:"KAMLEKH", date:"30-11-2023", lon:"79.97035367", lat:"29.380002", village:"KAMLEKH", market:"D2" },
     { busloc:"2024168", status:"Active", descr:"RO AT LAXMIPUR LACCHI", cust:"247460", name:"SHIV SAI FILLING STATION", area:"KASHIPUR TOWN- NH-74", cat:"DC", street:"VILLAGE LAXMIPUR LACCHI, KASHIPUR-RAMNAGAR ROAD", city:"LAXMIPUR LACCHI", date:"29-03-2024", lon:"79.002717", lat:"29.25914", village:"LAXMIPUR LACCHI", market:"D1" },
     { busloc:"2025911", status:"Active", descr:"RO AT PIPALIYANATHU", cust:"254268", name:"SANDHU FILLING STATION", area:"SITARGANJ", cat:"DC", street:"VILLAGE PIPALIYANATHU,NH-30,TEHSIL SITARGANJ", city:"SITARGANJ", date:"31-12-2024", lon:"79.706444", lat:"28.873139", village:"PIPALIYANATHU", market:"D1" },
-    { busloc:"2026048", status:"Active", descr:"RO AT JASPUR PATTI MANSA", cust:"259365", name:"TSPAL FILLING STATION", area:"JASPUR", cat:"CC", street:"JASPUR NADEHI ROAD", city:"JASPUR", date:"31-07-2025", lon:"78.804327", lat:"29.279718", village:"JASPUR PATTI MANSA", market:"C" },
+    { busloc:"2026048", status:"Active", descr:"RO AT JASPUR PATTI MANSA", cust:"259365", name:"TSPAL FILLING STATION", area:"JASPUR", cat:"CC", street:"JASPUR NADEHI ROAD, WML OF JASPUR", city:"JASPUR", date:"31-07-2025", lon:"78.804327", lat:"29.279718", village:"JASPUR PATTI MANSA", market:"C" },
     { busloc:"2026975", status:"Active", descr:"RO AT VILLAGE JANGAL JOGITHER SH-70", cust:"260778", name:"SHRI KEDAR FILLING STATION", area:"KHATIMA-PILIBHIT ROAD", cat:"DC", street:"VILLAGE JANGAL JOGITHER ON JARASU PRATAPUR ROAD SH-70", city:"JANGAL JOGITHER", date:"30-10-2025", lon:"79.8535915", lat:"28.9295756", village:"JANGAL JOGITHER", market:"D2" },
     { busloc:"2026682", status:"Active", descr:"RO AT BAWANPURI ON SH-41", cust:"252422", name:"DHRUV FILLING STATION", area:"CHORGALIYA", cat:"DC", street:"SH-41 SITARGANJ HALDWANI ROAD", city:"SITARGANJ", date:"30-10-2024", lon:"79.697722", lat:"28.963387", village:"BAWANPURI", market:"D2" },
     { busloc:"2028485", status:"Active", descr:"RO AT VILLAGE BANUSHI ON NH 09", cust:"256791", name:"BALAJI FILLING STATION", area:"KHATIMA", cat:"DC", street:"VILLAGE BANUSHI TEHSIL KHATIMA", city:"BANUSHI", date:"14-05-2025", lon:"79.916835", lat:"28.935848", village:"BANUSHI", market:"D1" },
     { busloc:"2027870", status:"Active", descr:"RO AT VILLAGE THARUTISOR", cust:"255905", name:"NANAK ENERGY POINT", area:"CHORGALIYA", cat:"DC", street:"NAKULIYA ROAD", city:"THARUTISOR", date:"28-02-2025", lon:"79.7116128", lat:"28.9549716", village:"THARUTISOR", market:"E" },
-    { busloc:"2028721", status:"Active", descr:"RO AT PIPALIYA", cust:"260485", name:"HARMAN HIGHWAY FUELS", area:"PULBHATTA", cat:"CC", street:"VILLAGE PIPALIYA", city:"PIPALIYA", date:"30-09-2025", lon:"79.547487", lat:"28.895302", village:"VILLAGE PIPALIYA", market:"D1" }
+    { busloc:"2028721", status:"Active", descr:"RO AT PIPALIYA", cust:"260485", name:"HARMAN HIGHWAY FUELS", area:"PULBHATTA", cat:"CC", street:"VILLAGE PIPALIYA", city:"VILLAGE PIPALIYA", date:"30-09-2025", lon:"79.547487", lat:"28.895302", village:"VILLAGE PIPALIYA", market:"D1" }
 ];
 
 const tableBody = document.querySelector("#roTable tbody");
 const searchBox = document.getElementById("searchBox");
 const details = document.getElementById("details");
+const quickStats = document.getElementById("quickStats");
 
-function getStatusClass(status) {
-    if (status.toLowerCase() === 'active') return 'status-active';
-    if (status.toLowerCase() === 'suspended') return 'status-suspended';
-    return 'status-initial';
+function updateStats() {
+    const active = data.filter(d => d.status.toLowerCase() === 'active').length;
+    const suspended = data.filter(d => d.status.toLowerCase() === 'suspended').length;
+    const initial = data.filter(d => d.status.toLowerCase() === 'initial').length;
+    quickStats.innerHTML = `
+        <span class="text-emerald-600">Active: ${active}</span>
+        <span class="text-rose-600">Suspended: ${suspended}</span>
+        <span class="text-amber-600">Initial: ${initial}</span>
+    `;
+}
+
+function getStatusBadge(status) {
+    const s = status.toLowerCase();
+    if (s === 'active') return '<span class="px-4 py-1.5 bg-emerald-50 text-emerald-600 rounded-full text-[10px] font-black uppercase tracking-widest">Active</span>';
+    if (s === 'suspended') return '<span class="px-4 py-1.5 bg-rose-50 text-rose-600 rounded-full text-[10px] font-black uppercase tracking-widest">Suspended</span>';
+    return '<span class="px-4 py-1.5 bg-amber-50 text-amber-600 rounded-full text-[10px] font-black uppercase tracking-widest">Initial</span>';
 }
 
 function loadTable(filter = "") {
     tableBody.innerHTML = "";
     const lowerFilter = filter.toLowerCase();
-    
-    data.filter(r =>
-        (r.cust && r.cust.toLowerCase().includes(lowerFilter)) ||
-        (r.name && r.name.toLowerCase().includes(lowerFilter)) ||
-        (r.busloc && r.busloc.toLowerCase().includes(lowerFilter))
+    data.filter(r => 
+        r.busloc.includes(lowerFilter) || 
+        r.name.toLowerCase().includes(lowerFilter) || 
+        r.city.toLowerCase().includes(lowerFilter)
     ).forEach(r => {
         let row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${r.busloc}</td>
-            <td class="${getStatusClass(r.status)}">${r.status}</td>
-            <td>${r.cust || '-'}</td>
-            <td>${r.name || '-'}</td>
-            <td>${r.city}</td>
-        `;
+        row.className = "hover:bg-white/80 cursor-pointer transition-all border-b border-slate-50/50";
+        row.innerHTML = `<td class="px-6 py-5 font-mono font-bold text-blue-600 text-sm">${r.busloc}</td>
+                         <td class="px-6 py-5 font-semibold text-slate-700">${r.name}</td>
+                         <td class="px-6 py-5 text-slate-400 font-medium">${r.city}</td>`;
         row.onclick = () => showDetails(r);
         tableBody.appendChild(row);
     });
 }
 
 function showDetails(r) {
-    let finalLat = r.lat;
-    let finalLon = r.lon;
-
-    // Smart logic: Fixes rows where Latitude/Longitude were accidentally typed backwards in the raw data
-    if (parseFloat(finalLat) > 60 && parseFloat(finalLon) < 40) {
-        finalLat = r.lon; 
-        finalLon = r.lat;
-    }
-
-    let mapLink = `https://www.google.com/maps/dir/?api=1&destination=${finalLat},${finalLon}`;
-
-    let navButtonHTML = (r.lat === "0" || r.lon === "0" || r.lat === "" || r.lon === "") 
-        ? `<p style="color:#e74c3c; font-weight:bold; margin-top:15px;">⚠️ Coordinates not provided for this location.</p>` 
-        : `<a class="mapBtn" href="${mapLink}" target="_blank">Navigate in Google Maps 📍</a>`;
+    let mapLink = `https://www.google.com/maps/dir/?api=1&destination=${r.lat},${r.lon}`;
+    let hasCoords = !(r.lat === "0" || !r.lat);
 
     details.innerHTML = `
-        <h2 style="margin:0 0 15px 0; color:#2c3e50;">${r.descr}</h2>
-        <div class="detail-grid">
-            <div class="detail-item"><span>Business Location</span><b>${r.busloc}</b></div>
-            <div class="detail-item"><span>Status</span><b class="${getStatusClass(r.status)}">${r.status}</b></div>
-            <div class="detail-item"><span>Customer Code</span><b>${r.cust || 'N/A'}</b></div>
-            <div class="detail-item"><span>Customer Name</span><b>${r.name || 'N/A'}</b></div>
-            <div class="detail-item"><span>City</span><b>${r.city}</b></div>
-            <div class="detail-item"><span>Street / Area</span><b>${r.street}</b></div>
-            <div class="detail-item"><span>Trading Area</span><b>${r.area}</b></div>
-            <div class="detail-item"><span>Control Cat</span><b>${r.cat}</b></div>
-            <div class="detail-item"><span>Village</span><b>${r.village}</b></div>
-            <div class="detail-item"><span>Market Class</span><b>${r.market}</b></div>
-            <div class="detail-item"><span>Commission Date</span><b>${r.date || 'N/A'}</b></div>
+        <div class="bg-white rounded-[2rem] p-10 shadow-2xl border border-white animate-in fade-in slide-in-from-bottom-8 duration-500">
+            <div class="flex flex-col md:flex-row justify-between items-start mb-10 gap-8">
+                <div class="flex-1">
+                    <div class="mb-4">${getStatusBadge(r.status)}</div>
+                    <h2 class="serif-font text-4xl text-slate-900 leading-tight mb-4">${r.descr}</h2>
+                    <p class="text-slate-400 font-light text-lg italic"><i class="fa-solid fa-map-pin mr-2 text-yellow-500"></i> ${r.street}, ${r.city}</p>
+                </div>
+                ${hasCoords ? `<a href="${mapLink}" target="_blank" class="bpcl-bg-blue text-white px-12 py-5 rounded-full font-bold shadow-2xl shadow-blue-200 hover:scale-105 active:scale-95 transition-all flex items-center justify-center space-x-3 w-full md:w-auto">
+                    <i class="fa-solid fa-paper-plane"></i> <span>Navigate</span>
+                </a>` : ''}
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-slate-50/50 p-6 rounded-2xl border border-slate-100"><p class="text-[9px] uppercase font-black text-slate-400 mb-2">Customer Code</p><p class="font-bold text-slate-800">${r.cust || 'N/A'}</p></div>
+                <div class="bg-slate-50/50 p-6 rounded-2xl border border-slate-100"><p class="text-[9px] uppercase font-black text-slate-400 mb-2">Trading Area</p><p class="font-bold text-slate-800">${r.area}</p></div>
+                <div class="bg-slate-50/50 p-6 rounded-2xl border border-slate-100"><p class="text-[9px] uppercase font-black text-slate-400 mb-2">Market Class</p><p class="font-bold text-slate-800">${r.market}</p></div>
+                <div class="bg-slate-50/50 p-6 rounded-2xl border border-slate-100"><p class="text-[9px] uppercase font-black text-slate-400 mb-2">Comm. Date</p><p class="font-bold text-slate-800">${r.date || 'Pending'}</p></div>
+            </div>
         </div>
-        ${navButtonHTML}
     `;
+    setTimeout(() => details.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
 }
 
-searchBox.addEventListener("keyup", () => {
-    loadTable(searchBox.value);
-});
-
-// Load everything on startup
+searchBox.addEventListener("input", (e) => loadTable(e.target.value));
+updateStats();
 loadTable();
 </script>
-
 </body>
 </html>
